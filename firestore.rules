@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /menuImages/{imageId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.dataUrl is string
+        && request.resource.data.dataUrl.size() < 900000
+        && request.resource.data.fileName is string
+        && request.resource.data.fileName.size() > 0
+        && request.resource.data.mimeType is string
+        && request.resource.data.mimeType.matches('image/.*');
+      allow delete: if true;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

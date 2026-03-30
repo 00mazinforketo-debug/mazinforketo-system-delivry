@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "mazin-for-keto",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-03-24",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "vars": {
+    "APP_ENV": "production",
+    "APP_ORIGIN": "http://127.0.0.1:5173",
+    "COOKIE_NAME": "restaurant_ops_session",
+    "SESSION_TTL_DAYS": "30"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "restaurant_ops",
+      "database_id": "1884e71d-ad12-4adf-9fe8-c3437cda655e"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MENU_ASSETS",
+      "bucket_name": "restaurant-ops-menu-assets"
+    }
+  ]
+}
